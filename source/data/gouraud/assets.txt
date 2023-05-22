@@ -1,0 +1,1 @@
+data/gouraud/PLT_bendit_sprite.png data/gouraud/bendit128x128x4 -format=s -width=128 -height=128

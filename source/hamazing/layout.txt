@@ -1,0 +1,24 @@
+build/trackmo_launcher -n PlatOS -zx0
+build/gotham.exe -n Gotham -dos -zx0
+build/hamtechnology.raw -n HamTech.smp -cm -zx0 -d8
+build/desire_demo_68k_v6.lsmusic -n 1st.lsmus -zx0
+build/desire_demo_68k_v6.lsbank -n 1st.lsbnk -cm -zx0 -d8
+build/bulb.exe -n Bulb -dos -zx0
+build/stham.exe -n STHam -dos -zx0
+build/PLT_HAMph_path_2_test08b_ham.raw -n HAMphrey.raw -cm -zx0
+build/kaleidoscope.exe -n Kaleidoscope -dos -zx0
+build/hexagon.exe -n Hexagon -dos -zx0
+build/dsr_68k_tune_2_v11.lsmusic -n 2nd.lsmus -zx0
+build/dsr_68k_tune_2_v11.lsbank -n 2nd.lsbnk -cm -zx0 -d8
+build/gouraud.exe -n Rubbercube -dos -zx0
+build/virgillbars.exe -n VirgillBars -dos -zx0
+build/blend.exe -n Blend -dos -zx0
+build/fiveimg2_ham.raw -n cHAMeleon.raw -cm -zx0
+build/fiveimg3_ham.raw -n Sunset.raw -cm -zx0
+build/fiveimg4_ham.raw -n Greets1.raw -cm -zx0
+build/fiveimg5_ham.raw -n Greets2.raw -cm -zx0
+build/PLT_DSRLogo01c_ham.raw -n Endlogo.raw -cm -zx0
+build/desire_68k_tune3_v2.lsmusic -n End.lsmus -zx0
+build/desire_68k_tune3_v2.lsbank -n End.lsbnk -cm -zx0 -d8
+build/endpart.exe -n Endpart -dos -zx0
+build/screenshots_320x1620.BPL -n Screenshots.raw -cm -zx0

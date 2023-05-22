@@ -1,0 +1,4 @@
+data/virgillbars/PLT_Lolcat_01c_WIP_64x128.png data/virgillbars/PLT_Lolcat64x128x16 -rawpalette -format=a -width=64 -height=128
+data/virgillbars/PLT_addition_sprite.png data/virgillbars/additionsprite96x112x4 -format=s -width=96 -height=112
+data/virgillbars/PLT_breakthrough_sprite.png data/virgillbars/lightbreak128x128x4 -format=s -width=128 -height=128
+data/virgillbars/PLT_breakthrough_sprite.png data/virgillbars/staybroken128x128x4 -format=s -X=144 -width=128 -height=128

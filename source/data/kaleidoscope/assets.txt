@@ -1,0 +1,7 @@
+data/kaleidoscope/PLT_Fairyanim_01c.png data/kaleidoscope/fairy1_48x51x16 -format=4 -interleaved -X=0 -Y=5 -width=48 -height=51 -rawpalette
+data/kaleidoscope/PLT_Fairyanim_01c.png data/kaleidoscope/fairy2_48x51x16 -format=4 -interleaved -X=64 -Y=5 -width=48 -height=51
+data/kaleidoscope/PLT_Fairyanim_01c.png data/kaleidoscope/fairy3_48x51x16 -format=4 -interleaved -X=128 -Y=5 -width=48 -height=51
+data/kaleidoscope/PLT_Fairyanim_01c.png data/kaleidoscope/puff1_32x15x16 -format=4 -interleaved -X=32 -Y=83 -width=32 -height=15
+data/kaleidoscope/PLT_Fairyanim_01c.png data/kaleidoscope/puff2_32x15x16 -format=4 -interleaved -X=96 -Y=83 -width=32 -height=15
+data/kaleidoscope/PLT_Fairyanim_01c.png data/kaleidoscope/puff3_32x15x16 -format=4 -interleaved -X=160 -Y=83 -width=32 -height=15
+data/kaleidoscope/PLT_Fairyanim_01c.png data/kaleidoscope/puff4_32x15x16 -format=4 -interleaved -X=224 -Y=83 -width=32 -height=15

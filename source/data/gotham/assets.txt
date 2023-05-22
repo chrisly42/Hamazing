@@ -1,0 +1,6 @@
+data/gotham/texts.png data/gotham/meanwhile320x18x4 -format=2 -Y=23 -height=18
+data/gotham/texts.png data/gotham/gothamcity320x23x4 -format=2 -Y=78 -height=23
+data/gotham/texts.png data/gotham/hameelinna320x23x4 -format=2 -Y=102 -height=23
+data/gotham/texts.png data/gotham/gotham320x23x4 -format=2 -Y=126 -height=23
+data/gotham/texts.png data/gotham/ham320x23x4 -format=2 -Y=150 -height=23
+data/gotham/texts.png data/gotham/hamtechnology320x13x4 -format=2 -Y=176 -height=13

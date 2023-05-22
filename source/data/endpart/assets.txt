@@ -1,0 +1,2 @@
+data/endpart/PJZ_font_8x16x4.png data/endpart/PJZ_font_8x16x4 -format=2 -interleaved
+data/endpart/screenshots_rightpal.png data/endpart/screenshots_320x1620 -format=2 -interleaved

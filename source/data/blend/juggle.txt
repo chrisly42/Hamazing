@@ -1,0 +1,10 @@
+load data/blend/fiveimg_ham.raw
+save data/blend/fiveimg1_ham.raw -l 43200 -n 0
+save data/blend/fiveimg2_ham.raw -l 43200 -n 1
+save data/blend/fiveimg3_ham.raw -l 43200 -n 2
+save data/blend/fiveimg4_ham.raw -l 43200 -n 3
+save data/blend/fiveimg5_ham.raw -l 43200 -n 4
+clear
+load data/blend/leavestc.raw
+reorganize 180 -w 10 -l 2 -um 62
+save data/blend/leavestc_10.raw

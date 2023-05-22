@@ -1,0 +1,5 @@
+The configs expect the following rom files in this directory:
+
+- Kick13.rom
+- Kick20.rom
+- Kick31.rom

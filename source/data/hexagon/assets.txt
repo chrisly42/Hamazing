@@ -1,0 +1,2 @@
+data/hexagon/hexagon.png data/hexagon/hexagon_reg16x254 -rawpalette -ftpalette=dc.w -format=e -interleaved -width=16 -height=254
+data/hexagon/PLT_winners_sprite02b.png data/hexagon/winners128x128x4 -format=s -width=128 -height=128

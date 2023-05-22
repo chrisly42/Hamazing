@@ -1,0 +1,8 @@
+data/bulb/PLT_lamp_01c.png data/bulb/lamp_64x32x16 -rawpalette -X=0 -Y=0 -width=64 -height=32 -format=a
+data/bulb/PLT_lamp_02e.png data/bulb/lamp_off_64x32x16 -rawpalette -X=32 -Y=0 -width=64 -height=32 -format=a
+data/bulb/68k-inside-logo_128x80c.png data/bulb/text2 -X=0 -Y=0 -width=128 -height=80 -interleaved -format=2
+data/bulb/PLT_textsprites02.png data/bulb/text1 -X=0 -Y=0 -width=128 -height=80 -interleaved -format=2
+data/bulb/PLT_textsprites02.png data/bulb/text3 -X=128 -Y=0 -width=128 -height=80 -interleaved -format=2
+data/bulb/PLT_textsprites02.png data/bulb/text4 -X=256 -Y=0 -width=128 -height=80 -interleaved -format=2
+data/bulb/PLT_textsprites02.png data/bulb/text5 -X=384 -Y=0 -width=128 -height=80 -interleaved -format=2
+data/bulb/PLT_lamp_01c.png data/bulb/lamp_48x32x16 -X=8 -Y=0 -width=48 -height=32 -format=4
