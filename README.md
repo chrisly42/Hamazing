@@ -1,13 +1,15 @@
 # Hamazing by Desire
 
-This is the source code of Hamazing and PLatOS demo framework.
+This is the source code of [Hamazing](https://www.pouet.net/prod.php?which=94348) and PLatOS demo framework.
+
+There is a [technical backgrounds write-up](https://dump.platon42.de/hamazing/) if you want to get some insights.
+
+## Building
 
 It's supposed to build on a Windows machine (sorry).
 Some of the stuff was originally part of
 [Axis' Planet Rocklobster framework](https://github.com/AxisOxy/Planet-Rocklobster)
 and that may show in structure and some of the tools used.
-
-## Building
 
 Go into the `source/hamazing` directory and type `build.bat`.
 
