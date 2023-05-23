@@ -1945,7 +1945,7 @@ vgb_calc_ham_pixels:
         bra.s   .pickrg     ; 6
 .slowpick                   ; 7
         eor.w   d1,d0
-        PUTMSG  50,<"Slow pick to %x from %x!>,d1,d0
+        PUTMSG  50,<"Slow pick to %x from %x!">,d1,d0
         move.b  d0,-(sp)
         move.w  (sp)+,d2        ; gbxx
         move.b  d1,d2           ; gbGB
@@ -2083,7 +2083,7 @@ vgb_calc_ham_pixels_wobble:
         bra.s   .pickrg     ; 6
 .slowpick                   ; 7
         eor.w   d1,d0
-        PUTMSG  50,<"Slow pick to %x from %x!>,d1,d0
+        PUTMSG  50,<"Slow pick to %x from %x!">,d1,d0
         move.b  d0,-(sp)
         move.w  (sp)+,d2        ; gbxx
         move.b  d1,d2           ; gbGB
