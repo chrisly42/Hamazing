@@ -218,9 +218,200 @@ private fun parseLayoutLine(
             }
             println("Reorganized data to ${newData.size} bytes.")
         }
-
     }
-    lineParser.subcommands(ClearCommand(), LoadCommand(), SaveCommand(), ExtractCommand(), ReorganizeCommand())
+
+    class PlanarToChunkyCommand :
+        Subcommand("P2C", "Planar to chunky conversion") {
+        val width by argument(ArgType.Int, "width", description = "Width of image")
+        val height by argument(ArgType.Int, "height", description = "Height of image")
+        val planes by argument(ArgType.Int, "planes", description = "Number of planes")
+        val isInterleaved by option(ArgType.Boolean, "interleaved", "i", description = "Data is interleaved")
+        val startOffOption by option(ArgType.Int, "start", "s", description = "Start offset in bytes (default: 0)")
+
+        override fun execute() {
+            newData = UByteArray(width * height)
+            var inPos = startOffOption ?: 0
+            var outPos = 0
+            if ((width / 8) * height * planes + inPos > data.size) {
+                println("Input data not big enough!")
+                return
+            }
+            val planeOffset = if (isInterleaved == true) (width / 8) else (width / 8) * height
+            for (y in 0 until height) {
+                for (x in 0 until width step 8) {
+                    var mask = 0x80
+                    for (xx in 0..7) {
+                        var v = 0
+                        for (p in 0 until planes) {
+                            if ((data[inPos + p * planeOffset].toInt() and mask) != 0) {
+                                v += 1 shl p
+                            }
+                        }
+                        newData[outPos++] = v.toUByte()
+                        mask = mask shr 1
+                    }
+                    inPos++
+                }
+                if (isInterleaved == true) {
+                    inPos += planeOffset * (planes - 1)
+                }
+            }
+            println("Planar to chunky to ${newData.size} bytes.")
+        }
+    }
+
+    class ArithmeticCommand :
+        Subcommand("ALU", "Arithmetic operations") {
+        val length by argument(ArgType.Int, "length", description = "Amount of operations")
+        val operation by argument(
+            ArgType.Choice(
+                listOf("add", "sub", "neg", "mulu", "muls", "divu", "divs", "and", "or", "xor", "not"),
+                { it }), description = "Operation"
+        )
+        val operand by option(ArgType.Int, "const", "c", description = "Constant operand for operations")
+        val width by option(
+            ArgType.Choice(listOf("byte", "word", "long"), { it }),
+            shortName = "w",
+            description = "Width of operation (default: byte)"
+        )
+        val startOffOption by option(ArgType.Int, "start", "s", description = "Start offset in bytes (default: 0)")
+        val targetOffOption by option(
+            ArgType.Int,
+            "dest",
+            "d",
+            description = "Destination offset in bytes (default: 0)"
+        )
+        val operandOffOption by option(
+            ArgType.Int,
+            "operand",
+            "o",
+            description = "Operand offset in bytes (default: 0)"
+        )
+
+        override fun execute() {
+            val opWidth = when (width) {
+                "byte" -> 1
+                "word" -> 2
+                "long" -> 4
+                else -> 1
+            }
+            if ((operation != "neg") && (operation != "not") && (operand == null) && (operandOffOption == null)) {
+                println("Missing operand for operation '$operation!'")
+                return
+            }
+            var inPos = startOffOption ?: 0
+            var outPos = targetOffOption ?: 0
+            var opPos = operandOffOption ?: 0
+            if (inPos + length * opWidth > data.size) {
+                println("Input data not big enough!")
+                return
+            }
+            if (outPos + length * opWidth > data.size) {
+                println("Output data not big enough!")
+                return
+            }
+            if (opPos + length * opWidth > data.size) {
+                println("Operand data not big enough!")
+                return
+            }
+            for (p in 1..length) {
+                val value = when (opWidth) {
+                    1 -> data[inPos++].toInt()
+                    2 -> {
+                        var v = data[inPos++].toInt() shl 8
+                        v += data[inPos++].toInt()
+                        v
+                    }
+
+                    4 -> {
+                        var v = data[inPos++].toInt() shl 24
+                        v += data[inPos++].toInt() shl 16
+                        v += data[inPos++].toInt() shl 8
+                        v += data[inPos++].toInt()
+                        v
+                    }
+
+                    else -> 0
+                }
+                val opValue = if (operandOffOption != null) {
+                    when (opWidth) {
+                        1 -> data[opPos++].toInt()
+                        2 -> {
+                            var v = data[opPos++].toInt() shl 8
+                            v += data[opPos++].toInt()
+                            v
+                        }
+
+                        4 -> {
+                            var v = data[opPos++].toInt() shl 24
+                            v += data[opPos++].toInt() shl 16
+                            v += data[opPos++].toInt() shl 8
+                            v += data[opPos++].toInt()
+                            v
+                        }
+
+                        else -> 0
+                    }
+                } else {
+                    operand ?: 0
+                }
+                val result = when (operation) {
+                    "add" -> value + opValue
+                    "sub" -> value - opValue
+                    "neg" -> -value
+
+                    "and" -> value and opValue
+                    "or" -> value or opValue
+                    "xor" -> value xor opValue
+                    "not" -> value.inv()
+
+                    "mulu" -> value * opValue
+                    "muls" -> when (opWidth) {
+                        1 -> value.toByte().toInt() * opValue.toByte().toInt()
+                        2 -> value.toShort().toInt() * opValue.toShort().toInt()
+                        4 -> value * opValue
+                        else -> 0
+                    }
+
+                    "divu" -> value / opValue
+                    "divs" -> when (opWidth) {
+                        1 -> value.toByte().toInt() / opValue.toByte().toInt()
+                        2 -> value.toShort().toInt() / opValue.toShort().toInt()
+                        4 -> value / opValue
+                        else -> 0
+                    }
+
+                    else -> 0
+                }
+
+                when (opWidth) {
+                    1 -> data[outPos++] = result.toUByte()
+                    2 -> {
+                        data[outPos++] = (result ushr 8).toUByte()
+                        data[outPos++] = result.toUByte()
+                    }
+
+                    4 -> {
+                        data[outPos++] = (result ushr 24).toUByte()
+                        data[outPos++] = (result ushr 16).toUByte()
+                        data[outPos++] = (result ushr 8).toUByte()
+                        data[outPos++] = result.toUByte()
+                    }
+                }
+            }
+            println("ALU done.")
+        }
+    }
+
+    lineParser.subcommands(
+        ClearCommand(),
+        LoadCommand(),
+        SaveCommand(),
+        ExtractCommand(),
+        ReorganizeCommand(),
+        PlanarToChunkyCommand(),
+        ArithmeticCommand()
+    )
     println(line)
     lineParser.parse(line.split(" ").toTypedArray())
     return newData
